@@ -1,11 +1,30 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const recipeImports = import.meta.glob('./recipes/*.md');
+const recipeEntries = await Promise.all(
+  Object.entries(recipeImports).map(async ([path, resolver]) => {
+    const mod = await resolver();
+    return {
+      url: mod.url,
+      frontmatter: mod.frontmatter,
+    };
+  })
+);
+const recipes = recipeEntries.sort((a, b) => (b.frontmatter.date || '').localeCompare(a.frontmatter.date || ''));
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<Nav slot="nav" />
+<main class="max-w-2xl mx-auto p-6">
+  <h1 class="text-3xl font-bold mb-6">My Recipes</h1>
+  <ul class="space-y-4">
+    {recipes.map(recipe => (
+      <li>
+        <a href={recipe.url} class="text-xl text-blue-600 hover:underline font-semibold">{recipe.frontmatter.title || recipe.url}</a>
+        <div class="text-gray-500 text-sm">{recipe.frontmatter.date}</div>
+      </li>
+    ))}
+  </ul>
+</main>
+<Footer slot="footer" />

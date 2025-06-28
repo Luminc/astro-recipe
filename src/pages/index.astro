@@ -24,7 +24,9 @@ const recipes = recipeEntries.sort((a, b) => (b.frontmatter.date || '').localeCo
       {recipes.map(recipe => (
         <li>
           <a href={recipe.url} class="text-xl text-blue-600 hover:underline font-semibold">{recipe.frontmatter.title || recipe.url}</a>
-          <div class="text-gray-500 text-sm">{recipe.frontmatter.date}</div>
+          <div class="text-gray-500 text-sm">
+            {recipe.frontmatter.date ? new Date(recipe.frontmatter.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : ''}
+          </div>
         </li>
       ))}
     </ul>

@@ -5,6 +5,7 @@ tags: [burger, mushrooms, umami, vegetarian]
 layout: ../../layouts/RecipeLayout.astro
 ---
 
+# Shiitake Oyster Umami Burger — Miso Mayo Edition
 *A juicy, flavor-forward burger with miso mayo and jammy onions*
 
 ## 🍔 Core Ingredients

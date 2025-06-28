@@ -8,8 +8,12 @@
 		<title>Astro Basics</title>
 		<link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@400;600;700&display=swap" rel="stylesheet">
 	</head>
-	<body style="font-family: 'Commissioner', sans-serif;">
-		<slot />
+	<body style="font-family: 'Commissioner', sans-serif;" class="min-h-screen flex flex-col">
+		<slot name="nav" />
+		<main class="flex-1">
+			<slot />
+		</main>
+		<slot name="footer" />
 	</body>
 </html>
 

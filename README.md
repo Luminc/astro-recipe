@@ -5,9 +5,13 @@ A personal recipe collection site built with [Astro](https://astro.build), [Tail
 ## ✨ Features
 - Recipes stored as Markdown with frontmatter (title, date, tags)
 - Dynamic recipe listing on the homepage
+- **Interactive tag filtering and search** (multi-tag selection, instant filtering)
+- **Dynamic tag pages**: `/tags/` (all tags) and `/tags/[tag]` (recipes by tag)
+- **Breadcrumb navigation** for easy context and navigation
 - Consistent, mobile-friendly design with Tailwind CSS
 - Easy to add new recipes—just drop a `.md` file in `src/pages/recipes/`
 - Ready for deployment on Netlify
+- Uses React islands for interactivity (tag filtering/search)
 
 ## 🚀 Project Structure
 
@@ -18,16 +22,20 @@ A personal recipe collection site built with [Astro](https://astro.build), [Tail
 ├── src/
 │   ├── components/
 │   │   ├── Nav.astro
-│   │   └── Footer.astro
+│   │   ├── Footer.astro
+│   │   └── RecipeFilter.jsx  # React island for tag filtering/search
 │   ├── layouts/
 │   │   └── RecipeLayout.astro
 │   └── pages/
 │       ├── index.astro
+│       ├── tags/
+│       │   ├── index.astro   # All tags page
+│       │   └── [tag].astro   # Dynamic tag page
 │       └── recipes/
 │           ├── shiitake-umami-burger.md
 │           └── gnocchi-amatriciana.md
 ├── tailwind.config.js
-├── postcss.config.js
+├── postcss.config.cjs
 ├── netlify.toml
 └── package.json
 ```
@@ -64,6 +72,15 @@ A personal recipe collection site built with [Astro](https://astro.build), [Tail
   # Recipe Content
   ...
   ```
+
+## 🔎 Tag Filtering & Search
+- Use the tag buttons and search box on the homepage or tag pages to instantly filter recipes.
+- Select multiple tags for broader results.
+- Click any tag in a recipe to view all recipes with that tag.
+
+## 🏷️ Tag Pages
+- `/tags/` lists all tags as links.
+- `/tags/[tag]` shows all recipes for a specific tag, with breadcrumbs for navigation.
 
 ## 🌱 Learning Resources
 - [Astro Docs](https://docs.astro.build/)

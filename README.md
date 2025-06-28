@@ -1,48 +1,79 @@
-# Astro Starter Kit: Basics
+# My Recipe Website (Astro, Tailwind, TypeScript)
 
-```sh
-npm create astro@latest -- --template basics
-```
+A personal recipe collection site built with [Astro](https://astro.build), [Tailwind CSS](https://tailwindcss.com/), and TypeScript. Recipes are written in Markdown and rendered with beautiful, responsive layouts.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+## ✨ Features
+- Recipes stored as Markdown with frontmatter (title, date, tags)
+- Dynamic recipe listing on the homepage
+- Consistent, mobile-friendly design with Tailwind CSS
+- Easy to add new recipes—just drop a `.md` file in `src/pages/recipes/`
+- Ready for deployment on Netlify
 
 ## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
 
 ```text
 /
 ├── public/
-│   └── favicon.svg
+│   └── images/
 ├── src/
+│   ├── components/
+│   │   ├── Nav.astro
+│   │   └── Footer.astro
 │   ├── layouts/
-│   │   └── Layout.astro
+│   │   └── RecipeLayout.astro
 │   └── pages/
-│       └── index.astro
+│       ├── index.astro
+│       └── recipes/
+│           ├── shiitake-umami-burger.md
+│           └── gnocchi-amatriciana.md
+├── tailwind.config.js
+├── postcss.config.js
+├── netlify.toml
 └── package.json
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## 🧑‍💻 Getting Started
 
-## 🧞 Commands
+1. **Install dependencies:**
+   ```sh
+   npm install
+   ```
+2. **Run the dev server:**
+   ```sh
+   npm run dev
+   ```
+3. **Build for production:**
+   ```sh
+   npm run build
+   ```
+4. **Preview production build:**
+   ```sh
+   npm run preview
+   ```
 
-All commands are run from the root of the project, from a terminal:
+## 📝 Adding Recipes
+- Add new Markdown files to `src/pages/recipes/`.
+- Use frontmatter for `title`, `date`, `tags`, and `layout`:
+  ```markdown
+  ---
+  title: "Recipe Title"
+  date: 2025-06-28
+  tags: [tag1, tag2]
+  layout: ../../layouts/RecipeLayout.astro
+  ---
+  # Recipe Content
+  ...
+  ```
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## 🌱 Learning Resources
+- [Astro Docs](https://docs.astro.build/)
+- [Tailwind CSS Docs](https://tailwindcss.com/docs)
+- [TypeScript Handbook](https://www.typescriptlang.org/docs/)
 
-## 👀 Want to learn more?
+## 🌍 Deployment
+- Connect your repo to [Netlify](https://netlify.com/) and it will auto-deploy on push.
+- Netlify config: `netlify.toml`
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+---
+
+*Built for learning and delicious experimentation!*

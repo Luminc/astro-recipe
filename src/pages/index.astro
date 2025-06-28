@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import RecipeFilter from '../components/RecipeFilter.jsx';
 
 const recipeImports = import.meta.glob('./recipes/*.md');
 const recipeEntries = await Promise.all(
@@ -20,16 +21,7 @@ const recipes = recipeEntries.sort((a, b) => (b.frontmatter.date || '').localeCo
   <Nav slot="nav" />
   <main class="max-w-2xl mx-auto p-6">
     <h1 class="text-3xl font-bold mb-6">My Recipes</h1>
-    <ul class="space-y-4">
-      {recipes.map(recipe => (
-        <li>
-          <a href={recipe.url} class="text-xl text-blue-600 hover:underline font-semibold">{recipe.frontmatter.title || recipe.url}</a>
-          <div class="text-gray-500 text-sm">
-            {recipe.frontmatter.date ? new Date(recipe.frontmatter.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : ''}
-          </div>
-        </li>
-      ))}
-    </ul>
+    <RecipeFilter client:idle recipes={recipes} />
   </main>
   <Footer slot="footer" />
 </Layout>

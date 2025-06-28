@@ -6,12 +6,20 @@ import '../styles/global.css';
 const { frontmatter } = Astro.props;
 ---
 
-<Nav slot="nav" />
-<main class="max-w-2xl mx-auto p-6">
-  <h1 class="text-3xl font-bold mb-2">{frontmatter.title}</h1>
-  <p class="text-gray-500 mb-6">{frontmatter.date}</p>
-  <article class="prose prose-lg">
-    <slot />
-  </article>
-</main>
-<Footer slot="footer" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{frontmatter.title} | My Recipe Website</title>
+  <link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-white text-gray-900 font-sans" style="font-family: 'Commissioner', sans-serif;">
+  <Nav slot="nav" />
+  <main class="max-w-2xl mx-auto p-6">
+    <h1 class="text-3xl font-bold mb-2">{frontmatter.title}</h1>
+    <p class="text-gray-500 mb-6">{frontmatter.date}</p>
+    <article class="prose prose-lg">
+      <slot />
+    </article>
+  </main>
+  <Footer slot="footer" />
+</body>

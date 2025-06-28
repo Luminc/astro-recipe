@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  font-family: 'Commissioner', sans-serif;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+a:visited {
+  color: black;
+}
+a:hover, a:focus {
+  color: #facc15; /* Tailwind yellow-400 */
+  text-decoration: underline;
+}

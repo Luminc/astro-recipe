@@ -1,0 +1,33 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import RecipeFilter from '../../components/RecipeFilter.jsx';
+
+// getStaticPaths: generates a static page for each tag found in recipes
+export async function getStaticPaths() {
+  const recipes = await Astro.glob('../recipes/*.md');
+  const tags = Array.from(new Set(recipes.flatMap(r => r.frontmatter.tags || [])));
+  return tags.map(tag => ({ params: { tag } }));
+}
+
+// Get the tag from the URL params and filter recipes by that tag
+const { tag } = Astro.params;
+const recipes = (await Astro.glob('../recipes/*.md')).filter(r => (r.frontmatter.tags || []).includes(tag));
+---
+
+<Layout>
+  <Nav slot="nav" />
+  <main class="max-w-2xl mx-auto p-6">
+    {/* Breadcrumb navigation for context */}
+    <nav class="mb-4 text-sm text-gray-500">
+      <a href="/" class="hover:underline">Home</a> /
+      <a href="/tags/" class="hover:underline">Tags</a> /
+      <span class="capitalize">{tag}</span>
+    </nav>
+    <h1 class="text-3xl font-bold mb-6">Recipes tagged: <span class="capitalize">{tag}</span></h1>
+    {/* Interactive filter/search for recipes with this tag */}
+    <RecipeFilter client:idle recipes={recipes} />
+  </main>
+  <Footer slot="footer" />
+</Layout>

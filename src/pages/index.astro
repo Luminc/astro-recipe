@@ -4,17 +4,28 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import RecipeFilter from '../components/RecipeFilter.jsx';
 
+interface RecipeFrontmatter {
+  title?: string;
+  date?: string;
+  tags?: string[];
+  [key: string]: any;
+}
+interface RecipeModule {
+  url: string;
+  frontmatter: RecipeFrontmatter;
+}
+
 const recipeImports = import.meta.glob('./recipes/*.md');
 const recipeEntries = await Promise.all(
   Object.entries(recipeImports).map(async ([path, resolver]) => {
-    const mod = await resolver();
+    const mod = (await resolver()) as { url: string; frontmatter: RecipeFrontmatter };
     return {
       url: mod.url,
       frontmatter: mod.frontmatter,
     };
   })
 );
-const recipes = recipeEntries.sort((a, b) => (b.frontmatter.date || '').localeCompare(a.frontmatter.date || ''));
+const recipes: RecipeModule[] = recipeEntries.sort((a, b) => (b.frontmatter.date || '').localeCompare(a.frontmatter.date || ''));
 ---
 
 <Layout>

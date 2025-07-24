@@ -1,7 +1,26 @@
 ---
 title: "Shiitake Oyster Umami Burger — Miso Mayo Edition"
 date: 2025-06-24
+description: "A juicy, flavor-forward burger with miso mayo and jammy onions."
+image: "/images/shiitake-umami-burger.jpg"
 tags: [burger, mushrooms, umami, vegetarian]
+prepTime: "PT20M"
+cookTime: "PT45M"
+totalTime: "PT65M"
+recipeYield: "2 burgers"
+recipeIngredient:
+  - "2 beef patties (~125g each), or plant-based"
+  - "150–200g shiitake mushrooms, sliced"
+  - "5 large yellow onions, thinly sliced"
+  - "2 soft burger buns (brioche recommended)"
+  - "Toasted sesame seeds or optional enoki mushrooms (garnish)"
+recipeInstructions:
+  - text: "Caramelize the onions: Cook sliced onions with fat, salt, and brown sugar until deep golden (~45–60 min). Optional: add balsamic or soy at the end."
+  - text: "Sear mushrooms: Brown in a hot pan, salt lightly to draw moisture. Deglaze with a splash of water or beer, then stir in glaze. Turn off heat and coat mushrooms."
+  - text: "Prepare the patties: Season with umami salt, sear in hot pan 2–3 min per side. Optional: cheese melt in final minute."
+  - text: "Toast the buns: Spread mayo (or neutral mayo mix) on cut sides and grill until golden. Add a dollop of miso mayo on top bun after grilling."
+  - text: "Assemble: Bottom bun (crispy mayo side down), jammy onions, burger patty, glazed shiitake, miso mayo, top bun."
+  - text: "Serve with fries: Toss fries in miso mayo or serve it as a dip. Sprinkle with furikake or seaweed salt if available."
 layout: ../../layouts/RecipeLayout.astro
 ---
 

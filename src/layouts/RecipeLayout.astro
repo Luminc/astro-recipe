@@ -14,10 +14,36 @@ const { frontmatter } = Astro.props ?? { frontmatter: {} };
 <body class="bg-white text-gray-900 font-sans" style="font-family: 'Commissioner', sans-serif;">
   <Nav slot="nav" />
   <main class="max-w-2xl mx-auto p-6">
+    {frontmatter.image && (
+      <img src={frontmatter.image} alt={frontmatter.title} class="rounded-lg mb-4 w-full object-cover max-h-72" loading="lazy" />
+    )}
     <h1 class="text-3xl font-bold mb-2">{frontmatter.title}</h1>
-    <p class="text-gray-500 mb-6">
-      {frontmatter.date ? new Date(frontmatter.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : ''}
-    </p>
+    {frontmatter.description && (
+      <p class="text-lg text-gray-700 mb-2">{frontmatter.description}</p>
+    )}
+    <div class="flex flex-wrap gap-4 text-sm text-gray-500 mb-4">
+      {frontmatter.recipeYield && <span><strong>Yield:</strong> {frontmatter.recipeYield}</span>}
+      {frontmatter.prepTime && <span><strong>Prep:</strong> {frontmatter.prepTime.replace('PT','').toLowerCase()}</span>}
+      {frontmatter.cookTime && <span><strong>Cook:</strong> {frontmatter.cookTime.replace('PT','').toLowerCase()}</span>}
+      {frontmatter.totalTime && <span><strong>Total:</strong> {frontmatter.totalTime.replace('PT','').toLowerCase()}</span>}
+      {frontmatter.date && <span>{new Date(frontmatter.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>}
+    </div>
+    {frontmatter.recipeIngredient && (
+      <section class="mb-6">
+        <h2 class="text-xl font-semibold mb-2">Ingredients</h2>
+        <ul class="list-disc list-inside space-y-1">
+          {frontmatter.recipeIngredient.map(ingredient => <li>{ingredient}</li>)}
+        </ul>
+      </section>
+    )}
+    {frontmatter.recipeInstructions && (
+      <section class="mb-6">
+        <h2 class="text-xl font-semibold mb-2">Instructions</h2>
+        <ol class="list-decimal list-inside space-y-2">
+          {frontmatter.recipeInstructions.map((step, i) => <li>{step.text}</li>)}
+        </ol>
+      </section>
+    )}
     <article class="prose prose-lg">
       <slot />
     </article>

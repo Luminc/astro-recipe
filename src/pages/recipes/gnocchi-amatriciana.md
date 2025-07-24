@@ -1,7 +1,29 @@
 ---
 title: "Gnocchi Amatriciana"
 date: 2025-06-20
+description: "A Roman-inspired classic with guanciale, tomato, Pecorino, and chili, served with pillowy gnocchi."
+image: "/images/gnocchi-amatriciana.jpg"
 tags: [gnocchi, pasta, italian, classic]
+prepTime: "PT10M"
+cookTime: "PT30M"
+totalTime: "PT40M"
+recipeYield: "2 servings"
+recipeIngredient:
+  - "500g potato gnocchi"
+  - "~100g guanciale, cut into lardons"
+  - "1 can Mutti San Marzano tomatoes (crushed or broken by hand)"
+  - "1 small handful Pecorino Romano, finely grated"
+  - "1 tsp peperoncino flakes or chili flakes (to taste)"
+  - "Optional: 1 splash dry red wine (e.g. Montepulciano)"
+  - "Optional: 1 garlic clove (smashed, removed before tomato)"
+recipeInstructions:
+  - text: "Start cold: Place guanciale in a cold pan. Heat slowly over medium-low to render the fat fully and crisp the edges."
+  - text: "Fry the heat: Add peperoncino flakes directly into the hot fat. Let them bloom for 30 seconds — aromatic and spicy."
+  - text: "Deglaze (optional): Add a splash of red wine and reduce until nearly evaporated."
+  - text: "Sauce: Add crushed tomatoes, stir, and reduce heat. Simmer uncovered for 10–15 minutes until thickened. Salt lightly."
+  - text: "Cook gnocchi: Boil in salted water until they float (1–2 min). Optionally pan-fry in olive oil for a golden exterior."
+  - text: "Combine: Add gnocchi to the sauce, toss gently. Off heat, stir in grated Pecorino for silkiness."
+  - text: "Serve: Plate and top with more Pecorino and freshly cracked black pepper."
 layout: ../../layouts/RecipeLayout.astro
 ---
 

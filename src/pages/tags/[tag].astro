@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
-import RecipeFilter from '../../components/RecipeFilter.jsx';
+import RecipeList from '../../components/RecipeList.jsx';
 
 // getStaticPaths: generates a static page for each tag found in recipes
 export async function getStaticPaths() {
@@ -26,8 +26,7 @@ const recipes = (await Astro.glob('../recipes/*.md')).filter(r => (r.frontmatter
       <span class="capitalize">{tag}</span>
     </nav>
     <h1 class="text-3xl font-bold mb-6">Recipes tagged: <span class="capitalize">{tag}</span></h1>
-    {/* Interactive filter/search for recipes with this tag */}
-    <RecipeFilter client:idle recipes={recipes} />
+    <RecipeList client:idle recipes={recipes} />
   </main>
   <Footer slot="footer" />
 </Layout>

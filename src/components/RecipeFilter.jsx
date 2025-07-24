@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import RecipeList from './RecipeList.jsx';
 
 // RecipeFilter: React island for tag filtering and search on the recipe index and tag pages
 // Props: recipes (array of recipe objects with frontmatter)
@@ -20,7 +21,6 @@ export default function RecipeFilter({ recipes }) {
   };
 
   // Filter recipes by selected tags and search query
-  // Matches if any selected tag is present (OR logic)
   const filtered = recipes.filter(r => {
     const matchesTags = selectedTags.length === 0 || (r.frontmatter.tags || []).some(tag => selectedTags.includes(tag));
     const matchesSearch = r.frontmatter.title.toLowerCase().includes(search.toLowerCase());
@@ -64,36 +64,7 @@ export default function RecipeFilter({ recipes }) {
         onChange={e => setSearch(e.target.value)}
         className="mb-4 px-3 py-2 border rounded w-full"
       />
-      {/* Recipe list */}
-      <ul className="space-y-4">
-        {filtered.map(recipe => (
-          <li key={recipe.url}>
-            {/* Recipe title link */}
-            <a href={recipe.url} className="text-xl font-semibold hover:underline">
-              {recipe.frontmatter.title || recipe.url}
-            </a>
-            {/* Date */}
-            <div className="text-gray-500 text-sm">
-              {recipe.frontmatter.date ? new Date(recipe.frontmatter.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : ''}
-            </div>
-            {/* Tag links */}
-            <div className="flex flex-wrap gap-2 mt-1">
-              {(recipe.frontmatter.tags || []).map(tag => (
-                <a
-                  key={tag}
-                  href={`/tags/${encodeURIComponent(tag)}`}
-                  className="text-xs bg-gray-200 rounded px-2 py-0.5 hover:bg-yellow-200 transition-colors"
-                  title={`See all recipes tagged '${tag}'`}
-                >
-                  {tag}
-                </a>
-              ))}
-            </div>
-          </li>
-        ))}
-        {/* No results message */}
-        {filtered.length === 0 && <li className="text-gray-400">No recipes found.</li>}
-      </ul>
+      <RecipeList recipes={filtered} />
     </div>
   );
 }

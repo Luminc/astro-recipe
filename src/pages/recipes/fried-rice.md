@@ -1,8 +1,33 @@
 ---
-title: Minimalist Fried Rice + Maillard Notes
-description: A simple but powerful fried rice baseline with garlic, onion, egg and pantry staples, plus key technique notes on Maillard for your Astro kitchen site.
-date: 2025-07-13
-tags: [fried rice, technique, iterative, lunch]
+title: "Minimalist Fried Rice + Maillard Notes"
+date: "2025-07-13"
+description: "A simple but powerful fried rice baseline with garlic, onion, egg and pantry staples, plus key technique notes on Maillard for your Astro kitchen site."
+image: "/images/fried-rice.jpg"
+tags: ["fried rice", "technique", "iterative", "lunch"]
+prepTime: "PT10M"
+cookTime: "PT15M"
+totalTime: "PT25M"
+recipeYield: "2 servings"
+recipeIngredient:
+  - "3-4 smashed garlic cloves"
+  - "1 onion, sliced"
+  - "~2 portions cold rice (from fridge)"
+  - "1-2 eggs"
+  - "Sesame oil or neutral oil (sunflower/croma)"
+  - "2 tbsp soy sauce"
+  - "1/2 tbsp oyster sauce"
+  - "1 heaping tsp sambal brandal"
+  - "1/2 tsp MSG"
+  - "Toppings: seroendeng, fried shallots"
+recipeInstructions:
+  - text: "Heat sesame oil (or mix with neutral oil) in pan until just smoking."
+  - text: "Reduce to medium, sauté garlic & onion until softened and aromatic."
+  - text: "Pour off excess oil if desired, keep some for flavor."
+  - text: "Push to side, scramble eggs on empty side of pan."
+  - text: "Add rice, crank heat to high, toss to combine."
+  - text: "Pour in sauce mix (soy, oyster, sambal, MSG), continue tossing on high."
+  - text: "Top with seroendeng & fried shallots."
+layout: ../../layouts/RecipeLayout.astro
 ---
 
 ## 🍳 Minimalist fried rice (barebone version)

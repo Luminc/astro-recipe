@@ -2,7 +2,7 @@
 title: "Authentic Rendang Padang"
 date: "2025-06-25"
 description: "A deep, caramelized West Sumatran beef rendang — slow-cooked in coconut milk and spices until nearly dry, intensely aromatic and rich."
-image: "/images/rendang.jpg"
+image: "rendang.jpg"
 tags: ["indonesian", "beef", "slow-cook", "stew"]
 prepTime: "PT30M"
 cookTime: "PT180M"

@@ -2,7 +2,7 @@
 title: "Freekeh Salad with Roasted Aubergine, Pumpkin, Feta & Lime"
 date: "2025-07-15"
 description: "A bright, summery freekeh salad that fuses earthy roasted aubergine & pumpkin with creamy feta, fresh coriander, and a tangy dressing of lime & fish sauce. It bridges Mediterranean warmth and Southeast Asian punch — a perfect showcase of intuitive cooking."
-image: "/images/oven-freekeh-feta-lime.jpg"
+image: "oven-freekeh-feta-lime.jpg"
 tags: ["salad", "freekeh", "thai", "mediterranean"]
 prepTime: "PT20M"
 cookTime: "PT35M"

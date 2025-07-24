@@ -2,7 +2,7 @@
 title: "Minimalist Fried Rice + Maillard Notes"
 date: "2025-07-13"
 description: "A simple but powerful fried rice baseline with garlic, onion, egg and pantry staples, plus key technique notes on Maillard for your Astro kitchen site."
-image: "/images/fried-rice.jpg"
+image: "fried-rice.jpg"
 tags: ["fried rice", "technique", "iterative", "lunch"]
 prepTime: "PT10M"
 cookTime: "PT15M"

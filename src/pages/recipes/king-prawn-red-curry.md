@@ -2,7 +2,7 @@
 title: "King Prawn Thai Red Curry with Thai Eggplant, Kaffir Lime & Thai Basil (Brighter Iteration)"
 date: "2025-07-13"
 description: "A lively, more delicate take on Thai red curry with king prawns, seared Thai eggplant, bamboo shoots, baby corn, and bell pepper. Lifted by kaffir lime zest, finished with Thai basil, balanced between creamy coconut and a lighter stock base. Perfect over jasmine rice with an ice-cold Singha."
-image: "/images/king-prawn-red-curry.jpg"
+image: "king-prawn-red-curry.jpg"
 tags: ["thai", "curry", "seafood", "shrimp", "coconut", "bright", "spicy"]
 prepTime: "PT20M"
 cookTime: "PT30M"

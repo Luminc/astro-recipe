@@ -2,7 +2,7 @@
 title: "Shiitake Oyster Umami Burger — Miso Mayo Edition"
 date: "2025-06-24"
 description: "A juicy, flavor-forward burger with miso mayo and jammy onions."
-image: "/images/shiitake-umami-burger.jpg"
+image: "shiitake-umami-burger.jpg"
 tags: ["burger", "mushrooms", "umami", "vegetarian"]
 prepTime: "PT20M"
 cookTime: "PT45M"

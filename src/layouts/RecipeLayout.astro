@@ -2,6 +2,7 @@
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
+import { Image } from 'astro:assets';
 const { frontmatter } = Astro.props ?? { frontmatter: {} };
 ---
 
@@ -15,7 +16,7 @@ const { frontmatter } = Astro.props ?? { frontmatter: {} };
   <Nav slot="nav" />
   <main class="max-w-2xl mx-auto p-6">
     {frontmatter.image && (
-      <img src={frontmatter.image} alt={frontmatter.title} class="rounded-lg mb-4 w-full object-cover max-h-72" loading="lazy" />
+      <Image src={import(`../assets/${frontmatter.image.split('/').pop()}`)} alt={frontmatter.title} class="rounded-lg mb-4 w-full object-cover max-h-72" width={800} height={400} />
     )}
     <h1 class="text-3xl font-bold mb-2">{frontmatter.title}</h1>
     {frontmatter.description && (

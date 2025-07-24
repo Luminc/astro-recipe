@@ -2,7 +2,7 @@
 title: "Sweet Potato Brûlée with Caramelized Onions, Roasted Tomatoes & Eggs"
 date: "2025-07-12"
 description: "A decadent brunch or light dinner plate featuring fork-tender sweet potato halves roasted and brûléed with kecap manis & ginger syrup, deeply caramelized onions, blistered vine tomatoes, and simple fried eggs with a shower of pecorino. Each element stands alone — imagine the potatoes next to steak, the onions folded into pasta, or the tomatoes over toast."
-image: "/images/sweet-potato-brulee.jpg"
+image: "sweet-potato-brulee.jpg"
 tags: ["brunch", "sweet potato", "caramelized onion", "egg", "vegetarian"]
 prepTime: "PT20M"
 cookTime: "PT60M"

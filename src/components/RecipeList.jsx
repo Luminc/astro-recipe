@@ -12,7 +12,14 @@ export default function RecipeList({ recipes }) {
         <article className="rounded-lg border border-gray-200 bg-white shadow-sm overflow-hidden flex flex-col md:flex-row gap-4" key={url}>
           {frontmatter.image && (
             <a href={url} className="block md:w-48 flex-shrink-0">
-              <Image src={require(`../assets/${frontmatter.image.split('/').pop()}`)} alt={frontmatter.title} className="object-cover w-full h-32 md:h-full" width={300} height={200} />
+              <img
+                src={`/images/${frontmatter.image.split('/').pop()}`}
+                alt={frontmatter.title}
+                className="object-cover w-full h-32 md:h-full"
+                width={300}
+                height={200}
+                onError={e => { e.currentTarget.src = '/images/placeholder.jpg'; }}
+              />
             </a>
           )}
           <div className="flex-1 p-4 flex flex-col gap-2">

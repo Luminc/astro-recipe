@@ -16,7 +16,16 @@ const { frontmatter } = Astro.props ?? { frontmatter: {} };
   <Nav slot="nav" />
   <main class="max-w-2xl mx-auto p-6">
     {frontmatter.image && (
-      <Image src={import(`../assets/${frontmatter.image.split('/').pop()}`)} alt={frontmatter.title} class="rounded-lg mb-4 w-full object-cover max-h-72" width={800} height={400} />
+      <Image
+        src={
+          `/images/${frontmatter.image.split('/').pop()}`
+        }
+        alt={frontmatter.title}
+        class="rounded-lg mb-4 w-full object-cover max-h-72"
+        width={800}
+        height={400}
+        onError={(e) => { e.target.src = '/images/placeholder.jpg'; }}
+      />
     )}
     <h1 class="text-3xl font-bold mb-2">{frontmatter.title}</h1>
     {frontmatter.description && (

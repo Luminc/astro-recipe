@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "optimize-images": "npx @squoosh/cli --webp auto --mozjpeg auto --resize 1200x800 ./public/images/*.{jpg,png} || true"
   },
   "dependencies": {
     "@astrojs/react": "^4.3.0",
@@ -18,6 +19,14 @@
     "@tailwindcss/typography": "^0.5.16",
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.6",
-    "tailwindcss": "^3.4.17"
+    "tailwindcss": "^3.4.17",
+    "husky": "^8.0.0",
+    "lint-staged": "^15.2.0",
+    "@squoosh/cli": "^0.7.0"
+  },
+  "lint-staged": {
+    "public/images/*.{jpg,png}": [
+      "npm run optimize-images"
+    ]
   }
 }

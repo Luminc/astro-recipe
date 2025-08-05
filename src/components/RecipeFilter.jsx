@@ -7,9 +7,27 @@ export default function RecipeFilter({ recipes }) {
   // State for selected tags (multi-select) and search query
   const [selectedTags, setSelectedTags] = useState([]);
   const [search, setSearch] = useState('');
+  const [showAllTags, setShowAllTags] = useState(false);
 
-  // Collect all unique tags from recipes
-  const tags = Array.from(new Set(recipes.flatMap(r => r.frontmatter.tags || [])));
+  // Collect all unique tags from recipes with counts
+  const tagCounts = recipes.reduce((acc, recipe) => {
+    (recipe.frontmatter.tags || []).forEach(tag => {
+      acc[tag] = (acc[tag] || 0) + 1;
+    });
+    return acc;
+  }, {});
+  
+  // Sort tags by frequency (most popular first)
+  const sortedTags = Object.keys(tagCounts).sort((a, b) => tagCounts[b] - tagCounts[a]);
+  
+  // Show only top 8 tags initially, or all if showAllTags is true
+  // Always include selected tags even if they're not in the top 8  
+  const topTags = sortedTags.slice(0, 8);
+  const visibleTags = showAllTags ? sortedTags : [
+    ...topTags,
+    ...selectedTags.filter(tag => !topTags.includes(tag))
+  ].filter((tag, index, arr) => arr.indexOf(tag) === index); // Remove duplicates
+  const hasMoreTags = sortedTags.length > 8;
 
   // Toggle a tag in the selectedTags array
   const toggleTag = (tag) => {
@@ -54,8 +72,8 @@ export default function RecipeFilter({ recipes }) {
           >
             All ({recipes.length})
           </button>
-          {tags.map(tag => {
-            const count = recipes.filter(r => (r.frontmatter.tags || []).includes(tag)).length;
+          {visibleTags.map(tag => {
+            const count = tagCounts[tag];
             return (
               <button
                 key={tag}
@@ -70,6 +88,14 @@ export default function RecipeFilter({ recipes }) {
               </button>
             );
           })}
+          {hasMoreTags && (
+            <button
+              className="px-3 py-2 rounded-full text-sm font-medium bg-gray-50 text-gray-600 hover:bg-gray-100 transition-colors border-2 border-dashed border-gray-300"
+              onClick={() => setShowAllTags(!showAllTags)}
+            >
+              {showAllTags ? '− Show Less' : `+ ${sortedTags.length - 8} More Tags`}
+            </button>
+          )}
         </div>
         {selectedTags.length > 0 && (
           <div className="mt-3 flex items-center gap-2">

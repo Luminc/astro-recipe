@@ -1,5 +1,6 @@
 import React from 'react';
-import { Image } from 'astro:assets';
+// Dynamically import all images from src/assets
+const images = import.meta.glob('../assets/*.{jpg,png,webp,gif}');
 
 // RecipeList: renders recipe cards with image, title, description, times, yield, and tags
 export default function RecipeList({ recipes }) {
@@ -7,19 +8,12 @@ export default function RecipeList({ recipes }) {
     return <div className="text-gray-400">No recipes found.</div>;
   }
   return (
-    <section className="mt-8 grid gap-8">
+    <section className="mt-8 grid gap-6 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
       {recipes.map(({ url, frontmatter }) => (
-        <article className="rounded-lg border border-gray-200 bg-white shadow-sm overflow-hidden flex flex-col md:flex-row gap-4" key={url}>
+        <article className="rounded-lg border border-gray-200 bg-white shadow-sm hover:shadow-md transition-shadow overflow-hidden flex flex-col h-full" key={url}>
           {frontmatter.image && (
-            <a href={url} className="block md:w-48 flex-shrink-0">
-              <img
-                src={`/images/${frontmatter.image.split('/').pop()}`}
-                alt={frontmatter.title}
-                className="object-cover w-full h-32 md:h-full"
-                width={300}
-                height={200}
-                onError={e => { e.currentTarget.src = '/images/placeholder.jpg'; }}
-              />
+            <a href={url} className="block aspect-video overflow-hidden">
+              <RecipeImage image={frontmatter.image} alt={frontmatter.title} />
             </a>
           )}
           <div className="flex-1 p-4 flex flex-col gap-2">
@@ -31,7 +25,7 @@ export default function RecipeList({ recipes }) {
               {frontmatter.prepTime && <span>Prep: {frontmatter.prepTime}</span>}
               {frontmatter.cookTime && <span>Cook: {frontmatter.cookTime}</span>}
               {frontmatter.totalTime && <span>Total: {frontmatter.totalTime}</span>}
-              {frontmatter.yield && <span>Yield: {frontmatter.yield}</span>}
+              {frontmatter.recipeYield && <span>Yield: {frontmatter.recipeYield}</span>}
             </div>
             {frontmatter.tags && frontmatter.tags.length > 0 && (
               <div className="mt-2 flex flex-wrap gap-2">
@@ -44,5 +38,46 @@ export default function RecipeList({ recipes }) {
         </article>
       ))}
     </section>
+  );
+}
+
+// Helper component for dynamic asset import and fallback
+function RecipeImage({ image, alt }) {
+  const [src, setSrc] = React.useState('/images/placeholder.svg');
+  React.useEffect(() => {
+    const filename = image.split('/').pop();
+    // Find matching path by checking if the path contains the filename
+    const match = Object.keys(images).find(path => {
+      const pathFilename = path.split('/').pop();
+      return pathFilename === filename;
+    });
+    
+    if (match) {
+      images[match]().then(mod => {
+        // The module might have different structures, try multiple properties
+        const imageUrl = mod.default?.src || mod.default || mod.src || mod;
+        if (typeof imageUrl === 'string') {
+          setSrc(imageUrl);
+        } else {
+          console.warn('Image URL is not a string:', imageUrl, 'Module:', mod);
+          setSrc('/images/placeholder.svg');
+        }
+      }).catch(err => {
+        console.error('Failed to load image:', err);
+        setSrc('/images/placeholder.svg');
+      });
+    } else {
+      setSrc('/images/placeholder.svg');
+    }
+  }, [image]);
+  return (
+    <img
+      src={src || '/images/placeholder.svg'}
+      alt={alt}
+      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+      width={300}
+      height={200}
+      onError={e => { e.currentTarget.src = '/images/placeholder.svg'; }}
+    />
   );
 }

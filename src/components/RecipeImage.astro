@@ -1,0 +1,43 @@
+---
+import { Image } from 'astro:assets';
+
+// Import available images
+import kingPrawnRedCurry from '../assets/king-prawn-red-curry.jpg';
+
+interface Props {
+  image: string;
+  alt: string;
+  class?: string;
+  width?: number;
+  height?: number;
+}
+
+const { image, alt, class: className = '', width = 400, height = 300 } = Astro.props;
+
+// Map image filenames to imported assets
+const imageMap = {
+  'king-prawn-red-curry.jpg': kingPrawnRedCurry,
+};
+
+// Get the image source - either imported asset or fallback
+const imageSrc = imageMap[image] || '/images/placeholder.svg';
+const useOptimizedImage = imageMap[image] !== undefined;
+---
+
+{useOptimizedImage ? (
+  <Image
+    src={imageSrc}
+    alt={alt}
+    class={className}
+    width={width}
+    height={height}
+  />
+) : (
+  <img
+    src={imageSrc}
+    alt={alt}
+    class={className}
+    width={width}
+    height={height}
+  />
+)}

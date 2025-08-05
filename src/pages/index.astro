@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Nav from '../components/Nav.astro';
+import ResponsiveNav from '../components/ResponsiveNav.astro';
 import Footer from '../components/Footer.astro';
 import RecipeFilter from '../components/RecipeFilter.jsx';
 
@@ -35,9 +35,9 @@ const recipes: RecipeModule[] = recipeEntries.sort((a, b) => (b.frontmatter.date
 ---
 
 <Layout>
-  <Nav slot="nav" />
-  <main class="max-w-2xl mx-auto p-6">
-    <h1 class="text-3xl font-bold mb-6">My Recipes</h1>
+  <ResponsiveNav slot="nav" />
+  <main class="max-w-6xl mx-auto p-6">
+    <h1 class="text-3xl font-bold mb-6">Recipes</h1>
     <RecipeFilter client:idle recipes={recipes} />
   </main>
   <Footer slot="footer" />

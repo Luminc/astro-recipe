@@ -3,7 +3,7 @@ title: "Tom Kha Goong (Thai Coconut Soup with Shrimp)"
 date: "2025-07-15"
 description: "A bright, creamy Thai coconut soup inspired by Pailin (Hot Thai Kitchen), made with galangal, lemongrass, kaffir lime leaves — plus your twist of an actual kaffir lime. Loaded with juicy shrimp & shiitake mushrooms, it’s deeply aromatic and just slightly spicy."
 image: "thom-kha-goong.jpg"
-tags: ["soup", "thai", "shrimp", "coconut"]
+tags: [soup, seafood, asian, dinner]
 prepTime: "PT15M"
 cookTime: "PT20M"
 totalTime: "PT35M"

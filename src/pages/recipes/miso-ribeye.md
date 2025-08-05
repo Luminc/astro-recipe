@@ -3,7 +3,7 @@ title: "Ribeye with Miso Butter, Roast Sweet Potato & Broccoli"
 date: "2025-07-09"
 description: "A beautifully seared ribeye topped with miso butter, paired with caramelized sweet potato half-moons and roasted broccoli. A clean, minimalist plate that balances salty, sweet, and umami."
 image: "miso-ribeye.jpg"
-tags: ["beef", "oven", "miso", "simple"]
+tags: [beef, asian, dinner]
 prepTime: "PT10M"
 cookTime: "PT45M"
 totalTime: "PT55M"

@@ -3,7 +3,7 @@ title: "Gnocchi Amatriciana"
 date: "2025-06-20"
 description: "A Roman-inspired classic with guanciale, tomato, Pecorino, and chili, served with pillowy gnocchi."
 image: "gnocchi-amatriciana.jpg"
-tags: [gnocchi, pasta, italian, classic]
+tags: [pasta, italian, dinner]
 prepTime: "PT10M"
 cookTime: "PT30M"
 totalTime: "PT40M"

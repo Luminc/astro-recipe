@@ -1,0 +1,45 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import ResponsiveNav from '../../../components/ResponsiveNav.astro';
+import Footer from '../../../components/Footer.astro';
+import RecipeList from '../../../components/RecipeList.jsx';
+import { getTranslation } from '../../../lib/i18n';
+
+// Load all Dutch recipes and extract unique tags
+const recipes = await Astro.glob('../recipes/*.md');
+const tags = Array.from(new Set(recipes.flatMap(r => r.frontmatter.tags || [])));
+const locale = 'nl';
+const t = getTranslation(locale);
+---
+
+<Layout locale={locale}>
+  <ResponsiveNav slot="nav" locale={locale} />
+  <main class="max-w-2xl mx-auto p-6">
+    {/* Breadcrumb navigation for context */}
+    <nav class="mb-4 text-sm text-gray-500">
+      <a href="/nl/" class="hover:underline">{t.nav.home}</a> / {t.nav.tags}
+    </nav>
+    <h1 class="text-3xl font-bold mb-6">{t.home.allTags}</h1>
+    {/* List all tags as links to their tag pages */}
+    <ul class="flex flex-wrap gap-3 mb-8">
+      {tags.map(tag => (
+        <li>
+          <a href={`/nl/tags/${encodeURIComponent(tag)}`} class="px-3 py-1 rounded bg-gray-100 hover:bg-yellow-200 transition-colors text-sm font-medium">
+            {tag}
+          </a>
+        </li>
+      ))}
+    </ul>
+    {/* List all recipes grouped by tag */}
+    {tags.map(tag => {
+      const taggedRecipes = recipes.filter(r => (r.frontmatter.tags || []).includes(tag));
+      return (
+        <section class="mb-12" id={tag}>
+          <h2 class="text-xl font-semibold mb-4 capitalize">{tag}</h2>
+          <RecipeList client:idle recipes={taggedRecipes} />
+        </section>
+      );
+    })}
+  </main>
+  <Footer slot="footer" />
+</Layout>

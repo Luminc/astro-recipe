@@ -1,13 +1,19 @@
 ---
+import Layout from './Layout.astro';
 import ResponsiveNav from '../components/ResponsiveNav.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 import { Image } from 'astro:assets';
+import { getTranslation } from '../lib/i18n';
 
 // Import available images
 import kingPrawnRedCurry from '../assets/king-prawn-red-curry.jpg';
 
 const { frontmatter } = Astro.props ?? { frontmatter: {} };
+
+// Detect locale from URL path
+const locale = Astro.url.pathname.startsWith('/nl/') ? 'nl' : 'en';
+const t = getTranslation(locale);
 
 // Map image filenames to imported assets
 const imageMap = {
@@ -23,14 +29,8 @@ const getImageSrc = (imageName) => {
 };
 ---
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{frontmatter.title} | My Recipe Website</title>
-  <link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@400;600;700&display=swap" rel="stylesheet">
-</head>
-<body class="bg-white text-gray-900 font-sans" style="font-family: 'Commissioner', sans-serif;">
-  <ResponsiveNav slot="nav" />
+<Layout locale={locale}>
+  <ResponsiveNav slot="nav" locale={locale} />
   <main class="max-w-4xl mx-auto p-4 sm:p-6">
     {frontmatter.image && (
       <div class="aspect-video mb-6 overflow-hidden rounded-lg shadow-lg">
@@ -64,25 +64,25 @@ const getImageSrc = (imageName) => {
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm">
         {frontmatter.recipeYield && (
           <div class="text-center">
-            <div class="font-semibold text-gray-900">Yield</div>
+            <div class="font-semibold text-gray-900">{t.recipe.yield}</div>
             <div class="text-gray-600">{frontmatter.recipeYield}</div>
           </div>
         )}
         {frontmatter.prepTime && (
           <div class="text-center">
-            <div class="font-semibold text-gray-900">Prep</div>
+            <div class="font-semibold text-gray-900">{t.recipe.prepTime}</div>
             <div class="text-gray-600">{frontmatter.prepTime.replace('PT','').toLowerCase()}</div>
           </div>
         )}
         {frontmatter.cookTime && (
           <div class="text-center">
-            <div class="font-semibold text-gray-900">Cook</div>
+            <div class="font-semibold text-gray-900">{t.recipe.cookTime}</div>
             <div class="text-gray-600">{frontmatter.cookTime.replace('PT','').toLowerCase()}</div>
           </div>
         )}
         {frontmatter.totalTime && (
           <div class="text-center">
-            <div class="font-semibold text-gray-900">Total</div>
+            <div class="font-semibold text-gray-900">{t.recipe.totalTime}</div>
             <div class="text-gray-600">{frontmatter.totalTime.replace('PT','').toLowerCase()}</div>
           </div>
         )}
@@ -96,7 +96,7 @@ const getImageSrc = (imageName) => {
     <div class="grid lg:grid-cols-3 gap-8 mb-8">
       {frontmatter.recipeIngredient && (
         <section class="lg:col-span-1">
-          <h2 class="text-2xl font-bold mb-4 text-gray-900">Ingredients</h2>
+          <h2 class="text-2xl font-bold mb-4 text-gray-900">{t.recipe.ingredients}</h2>
           <div class="bg-gray-50 rounded-lg p-4">
             <ul class="space-y-2">
               {frontmatter.recipeIngredient.map(ingredient => (
@@ -112,7 +112,7 @@ const getImageSrc = (imageName) => {
       
       {frontmatter.recipeInstructions && (
         <section class="lg:col-span-2">
-          <h2 class="text-2xl font-bold mb-4 text-gray-900">Instructions</h2>
+          <h2 class="text-2xl font-bold mb-4 text-gray-900">{t.recipe.instructions}</h2>
           <div class="space-y-4">
             {frontmatter.recipeInstructions.map((step, i) => (
               <div class="flex gap-4 p-4 bg-white border rounded-lg shadow-sm">
@@ -131,7 +131,7 @@ const getImageSrc = (imageName) => {
         <h3 class="text-lg font-semibold mb-3 text-gray-900">Tags</h3>
         <div class="flex flex-wrap gap-2">
           {frontmatter.tags.map(tag => (
-            <a href={`/tags/${encodeURIComponent(tag)}/`} class="inline-block bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium hover:bg-yellow-200 transition-colors">
+            <a href={locale === 'nl' ? `/nl/tags/${encodeURIComponent(tag)}/` : `/tags/${encodeURIComponent(tag)}/`} class="inline-block bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium hover:bg-yellow-200 transition-colors">
               {tag}
             </a>
           ))}
@@ -144,4 +144,4 @@ const getImageSrc = (imageName) => {
     </article>
   </main>
   <Footer slot="footer" />
-</body>
+</Layout>

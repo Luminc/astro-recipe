@@ -1,9 +1,9 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import ResponsiveNav from '../components/ResponsiveNav.astro';
-import Footer from '../components/Footer.astro';
-import RecipeFilter from '../components/RecipeFilter.jsx';
-import { getTranslation } from '../lib/i18n';
+import Layout from '../../layouts/Layout.astro';
+import ResponsiveNav from '../../components/ResponsiveNav.astro';
+import Footer from '../../components/Footer.astro';
+import RecipeFilter from '../../components/RecipeFilter.jsx';
+import { getTranslation } from '../../lib/i18n';
 
 interface RecipeFrontmatter {
   title?: string;
@@ -22,7 +22,7 @@ interface RecipeModule {
   frontmatter: RecipeFrontmatter;
 }
 
-const locale = 'en';
+const locale = 'nl';
 const t = getTranslation(locale);
 
 const recipeImports = import.meta.glob('./recipes/*.md');

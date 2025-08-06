@@ -1,0 +1,38 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+export interface Props {
+  locale: 'en' | 'nl';
+  currentPath: string;
+}
+
+const { locale, currentPath } = Astro.props;
+
+// Get the current path without locale prefix
+const pathWithoutLocale = currentPath.replace(/^\/(en|nl)/, '') || '/';
+
+// Generate URLs for both languages
+const enUrl = getRelativeLocaleUrl('en', pathWithoutLocale);
+const nlUrl = getRelativeLocaleUrl('nl', pathWithoutLocale);
+---
+
+<div class="language-toggle">
+  <a 
+    href={enUrl}
+    class:list={[
+      "px-3 py-1 text-sm rounded transition-colors",
+      locale === 'en' ? "bg-blue-600 text-white" : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+    ]}
+  >
+    EN
+  </a>
+  <a 
+    href={nlUrl}
+    class:list={[
+      "px-3 py-1 text-sm rounded transition-colors ml-1",
+      locale === 'nl' ? "bg-blue-600 text-white" : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+    ]}
+  >
+    NL
+  </a>
+</div>

@@ -2,7 +2,20 @@
   "permissions": {
     "allow": [
       "Bash(grep:*)",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Bash(npm install:*)",
+      "Bash(mkdir:*)",
+      "Bash(npm run dev:*)",
+      "Bash(npx astro:*)",
+      "Bash(./node_modules/.bin/astro build)",
+      "Bash(npm ls:*)",
+      "Bash(npm audit:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(npm update:*)",
+      "Bash(rm:*)",
+      "Bash(cp:*)",
+      "Bash(find:*)",
+      "Bash(npm run translate:*)"
     ],
     "deny": []
   }

@@ -4,24 +4,27 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "npm run translate && astro build",
+    "build:no-translate": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "translate": "node scripts/translate-recipes.js",
+    "translate:api": "node scripts/translate-recipes.js --api",
+    "translate:force": "node scripts/translate-recipes.js --force"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.58.0",
     "@astrojs/react": "^4.3.0",
     "astro": "^5.10.1",
+    "dotenv": "^17.2.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
-    "sharp-cli": "^1.15.0",
-    "sharp": "^0.33.4",
     "@tailwindcss/typography": "^0.5.16",
     "autoprefixer": "^10.4.21",
-    "husky": "^8.0.0",
-    "lint-staged": "^15.2.0",
     "postcss": "^8.5.6",
+    "sharp": "^0.33.4",
     "tailwindcss": "^3.4.17"
   }
 }

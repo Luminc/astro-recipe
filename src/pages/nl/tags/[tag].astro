@@ -1,0 +1,35 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import ResponsiveNav from '../../../components/ResponsiveNav.astro';
+import Footer from '../../../components/Footer.astro';
+import RecipeList from '../../../components/RecipeList.jsx';
+import { getTranslation } from '../../../lib/i18n';
+
+// getStaticPaths: generates a static page for each tag found in Dutch recipes
+export async function getStaticPaths() {
+  const recipes = await Astro.glob('../recipes/*.md');
+  const tags = Array.from(new Set(recipes.flatMap(r => r.frontmatter.tags || [])));
+  return tags.map(tag => ({ params: { tag } }));
+}
+
+// Get the tag from the URL params and filter recipes by that tag
+const { tag } = Astro.params;
+const recipes = (await Astro.glob('../recipes/*.md')).filter(r => (r.frontmatter.tags || []).includes(tag));
+const locale = 'nl';
+const t = getTranslation(locale);
+---
+
+<Layout locale={locale}>
+  <ResponsiveNav slot="nav" locale={locale} />
+  <main class="max-w-2xl mx-auto p-6">
+    {/* Breadcrumb navigation for context */}
+    <nav class="mb-4 text-sm text-gray-500">
+      <a href="/nl/" class="hover:underline">{t.nav.home}</a> /
+      <a href="/nl/tags/" class="hover:underline">{t.nav.tags}</a> /
+      <span class="capitalize">{tag}</span>
+    </nav>
+    <h1 class="text-3xl font-bold mb-6">Recepten getagd: <span class="capitalize">{tag}</span></h1>
+    <RecipeList client:idle recipes={recipes} />
+  </main>
+  <Footer slot="footer" />
+</Layout>

@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import RecipeList from './RecipeList.jsx';
 
 // RecipeFilter: React island for tag filtering and search on the recipe index and tag pages
-// Props: recipes (array of recipe objects with frontmatter)
-export default function RecipeFilter({ recipes }) {
+// Props: recipes (array of recipe objects with frontmatter), translations (object with localized strings)
+export default function RecipeFilter({ recipes, translations }) {
   // State for selected tags (multi-select) and search query
   const [selectedTags, setSelectedTags] = useState([]);
   const [search, setSearch] = useState('');
@@ -51,7 +51,7 @@ export default function RecipeFilter({ recipes }) {
       <div className="mb-6">
         <input
           type="text"
-          placeholder="Search recipes..."
+          placeholder={translations?.home?.searchPlaceholder || "Search recipes..."}
           value={search}
           onChange={e => setSearch(e.target.value)}
           className="w-full px-4 py-3 border rounded-lg shadow-sm focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 text-base"
@@ -60,7 +60,7 @@ export default function RecipeFilter({ recipes }) {
       
       {/* Tag filter section */}
       <div className="mb-6">
-        <h3 className="text-sm font-medium text-gray-700 mb-3">Filter by tags:</h3>
+        <h3 className="text-sm font-medium text-gray-700 mb-3">{translations?.home?.filterByTags || "Filter by tags:"}:</h3>
         <div className="flex flex-wrap gap-2">
           <button
             className={`px-3 py-2 rounded-full text-sm font-medium transition-colors ${
@@ -70,7 +70,7 @@ export default function RecipeFilter({ recipes }) {
             }`}
             onClick={() => setSelectedTags([])}
           >
-            All ({recipes.length})
+            {translations?.home?.allTags || "All"} ({recipes.length})
           </button>
           {visibleTags.map(tag => {
             const count = tagCounts[tag];
